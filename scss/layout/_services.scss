@@ -1,0 +1,55 @@
+@use '../utils' as *;
+
+.services {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+
+  @include mq(lg) {
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 0;
+  }
+
+  @include pseudo($height: 60%) {
+    background: $light-main-color;
+    z-index: -1;
+  }
+
+  > p,
+  > h2 {
+    grid-column: 1/-1;
+  }
+
+  &__column {
+    flex: 1;
+    background: $light-color;
+    padding: 1rem;
+    border-radius: border-radius(m);
+    box-shadow: 0.5rem 1rem 1rem rgba(0, 0, 0, 0.05);
+    @extend %transition;
+
+    h3 {
+      color: $main-color;
+    }
+    &:hover {
+      background: $main-color;
+    }
+
+    > * {
+      @extend %transition;
+    }
+    &:hover > * {
+      color: $light-color;
+    }
+
+    &:hover img {
+      filter: invert(1);
+    }
+  }
+
+  &__iconBox {
+    position: relative;
+    height: 5rem;
+    margin-bottom: 2rem;
+  }
+}

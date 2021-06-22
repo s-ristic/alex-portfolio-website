@@ -1,0 +1,68 @@
+@use '../utils/mixins' as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+  scroll-behavior: smooth;
+
+  @include mq(fhd) {
+    font-size: 15px;
+  }
+
+  @include mq(qhd) {
+    font-size: 20px;
+  }
+  @include mq(uhd) {
+    font-size: 30px;
+  }
+  @include mq(fivek) {
+    font-size: 40px;
+  }
+  @include mq(eightk) {
+    font-size: 60px;
+  }
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: #f9f9f9;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  display: inline-block;
+}
+
+img {
+  position: absolute;
+  display: block;
+  width: inherit;
+  height: inherit;
+  object-fit: cover;
+}
+
+header,
+footer {
+  padding: 1.5rem 4rem;
+
+  @include mq(lg) {
+    padding: 2.5rem 7rem;
+  }
+}
+
+main section {
+  padding: 3rem;
+
+  @include mq(lg) {
+    padding: 7rem;
+  }
+}

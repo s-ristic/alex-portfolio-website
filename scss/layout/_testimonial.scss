@@ -1,0 +1,101 @@
+@use '../utils/' as *;
+
+.testimonial {
+  position: relative;
+  background: $light-main-color;
+  @include flex(column);
+  padding-bottom: 5rem;
+
+  @include mq(lg) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__left {
+    min-width: 25rem;
+    width: 30%;
+    min-height: 33rem;
+  }
+
+  &__right {
+    width: 100%;
+
+    @include mq(lg) {
+      width: 60%;
+    }
+
+    > p {
+      text-transform: uppercase;
+    }
+  }
+
+  &__imageBox {
+    position: relative;
+    height: 33vw;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__slider {
+    display: flex;
+    overflow: hidden;
+  }
+  &__slide {
+    min-width: 100%;
+    @extend %transition;
+  }
+
+  &__arrows {
+    display: flex;
+
+    @include mq(lg) {
+      margin-top: 2rem;
+    }
+  }
+
+  &__arrows > div {
+    @include flex();
+    @extend %transition;
+    width: 5rem;
+    height: 5rem;
+    background: $main-color;
+    color: $text-color;
+    font-size: font-size(l);
+    margin-right: 1rem;
+    cursor: pointer;
+
+    &:hover {
+      background: $light-color;
+    }
+  }
+
+  &__bottom {
+    position: absolute;
+    bottom: -3.5rem;
+    left: 5%;
+    width: 90%;
+    height: 7rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: $light-color;
+    padding: 2rem;
+    box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.1);
+
+    @include mq(lg) {
+      bottom: -5rem;
+      left: 15%;
+      width: 70%;
+      height: 10rem;
+    }
+
+    img {
+      all: initial;
+      width: 15%;
+      height: 100%;
+    }
+  }
+}

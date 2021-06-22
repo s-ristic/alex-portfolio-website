@@ -1,0 +1,50 @@
+@use '../utils' as *;
+
+.footer {
+  position: relative;
+  background: $main-color;
+  border-top: 0.1rem solid $light-color;
+
+  &__socialMedia {
+    ul {
+      @include flex();
+      margin-bottom: 2rem;
+
+      @include mq(lg) {
+        justify-content: flex-start;
+        margin-bottom: 0;
+      }
+    }
+    li {
+      a {
+        color: $light-color;
+        font-size: font-size(s);
+        width: 3rem;
+        height: 3rem;
+        @include flex();
+        border-radius: border-radius(circle);
+        @extend %transition;
+
+        &:hover {
+          color: $main-color;
+          background: $light-color;
+        }
+      }
+    }
+  }
+
+  &__copyright {
+    color: $light-color;
+    font-size: font-size(s);
+    text-align: center;
+
+    @include mq(lg) {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      right: 50%;
+      transform: translate(-50%, -50%);
+      width: max-content;
+    }
+  }
+}

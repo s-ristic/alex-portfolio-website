@@ -1,0 +1,229 @@
+@use '../utils' as *;
+
+.header {
+  background: url('../images/header-bg.png') right/100% 100% no-repeat;
+  overflow: hidden;
+
+  @include pseudo($top: initial, $height: 10rem) {
+    bottom: 0;
+    background: url('../images/header-bottom.png') center/cover;
+    z-index: 1;
+  }
+
+  @include mq(lg) {
+    height: 100vh;
+  }
+
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 3rem;
+    background: linear-gradient(to right, $light-color 64%, $main-color 64%);
+    @include flex($justify-content: space-between);
+    border-bottom: 0.1rem solid $light-color;
+    z-index: 100;
+
+    @include mq(lg) {
+      padding: 1rem 5rem;
+    }
+  }
+
+  &__logo {
+    position: relative;
+    width: 12rem;
+    height: 5rem;
+  }
+
+  &__navigation {
+    background: $light-color;
+    position: absolute;
+    top: 7rem;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 7rem);
+    @include flex();
+    @extend %transition;
+    transform: scale(0);
+    opacity: 0;
+
+    @include mq(lg) {
+      all: unset;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      margin-top: -5rem;
+
+      @include mq(lg) {
+        flex-direction: row;
+        margin-top: 0;
+      }
+    }
+
+    li {
+      margin: 1rem 0;
+      text-align: center;
+
+      @include mq(lg) {
+        margin: 0 0 0 1rem;
+        text-align: left;
+      }
+    }
+
+    a {
+      color: $text-color;
+      font-size: font-size(l);
+      opacity: 0.5;
+      @extend %transition;
+
+      @include pseudo() {
+        border-bottom: 0.3rem solid $main-color;
+        opacity: 0;
+        @extend %transition;
+      }
+
+      @include mq(lg) {
+        font-size: font-size(s);
+      }
+
+      &:hover {
+        opacity: 1;
+      }
+      &:hover::before {
+        opacity: 1;
+      }
+    }
+  }
+
+  nav.nav-open .header__navigation {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  &__socialMedia {
+    visibility: hidden;
+    opacity: 0;
+    @extend %transition;
+
+    @include mq(lg) {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    ul {
+      display: flex;
+      align-items: center;
+      background: $main-color;
+      padding: 1rem;
+      position: absolute;
+      top: 85vh;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: border-radius(m);
+
+      @include mq(lg) {
+        padding: 0;
+        position: unset;
+        transform: unset;
+      }
+    }
+
+    li {
+      margin-left: 0.5em;
+    }
+
+    li:not(:last-child) {
+      a {
+        color: $light-color;
+        font-size: font-size(s);
+        width: 3rem;
+        height: 3rem;
+        @include flex();
+        border-radius: border-radius(circle);
+        @extend %transition;
+
+        &:hover {
+          color: $main-color;
+          background: $light-color;
+        }
+      }
+    }
+
+    .btn-medium {
+      white-space: nowrap;
+      margin-left: 1rem;
+    }
+  }
+  nav.nav-open .header__socialMedia {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &__navBtn {
+    position: relative;
+    width: 5rem;
+    height: 5rem;
+    font-size: font-size(xxl);
+    color: $light-color;
+
+    .fas {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .fa-times {
+      display: none;
+    }
+
+    @include mq(lg) {
+      display: none;
+    }
+  }
+
+  nav.nav-open .fa-bars {
+    display: none;
+  }
+  nav.nav-open .fa-times {
+    display: block;
+  }
+
+  &__content {
+    @include flex(column, space-between);
+    width: 100%;
+    padding-top: 15rem;
+    overflow: hidden;
+
+    @include mq(lg) {
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 4.5rem 4.5rem 0;
+    }
+
+    &Left {
+      width: 100%;
+      margin-bottom: 5rem;
+
+      @include mq(lg) {
+        width: 50%;
+        max-width: 60rem;
+        margin-bottom: 0;
+      }
+    }
+
+    &Right {
+      position: relative;
+      min-width: 45rem;
+      width: 45rem;
+      height: 90vh;
+
+      img {
+        object-fit: contain;
+      }
+    }
+  }
+}

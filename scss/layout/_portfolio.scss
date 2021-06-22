@@ -1,0 +1,85 @@
+@use '../utils' as *;
+
+.portfolio {
+  padding-left: 0;
+  padding-right: 0;
+
+  &__top {
+    @include flex(column, flex-start, flex-start);
+    padding: 0 4rem;
+
+    @include mq(lg) {
+      flex-direction: row;
+      align-items: flex-end;
+      padding: 0 7rem;
+    }
+
+    p {
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      padding: 0;
+      margin: 0;
+      line-height: 0.75;
+      margin-bottom: 5rem;
+
+      @include mq(lg) {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__tabMenu {
+    @include mq(lg) {
+      margin-left: 5rem;
+    }
+
+    .btn-small {
+      background: $light-main-color;
+      color: $text-color;
+      border: none;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    &--active {
+      color: $main-color !important;
+    }
+    button:hover {
+      color: $main-color;
+    }
+  }
+
+  &__content {
+    width: 100%;
+    height: 20rem;
+    padding-top: 5rem;
+    overflow: hidden;
+  }
+
+  &__slider {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    animation: portfolio-slider 10s linear infinite alternate;
+  }
+
+  @keyframes portfolio-slider {
+    to {
+      margin-left: -50%;
+    }
+  }
+
+  &__item {
+    position: relative;
+    min-width: 25%;
+    height: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
